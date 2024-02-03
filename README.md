@@ -16,5 +16,15 @@ This template should help get you started developing with Vue 3 in Vite. The tem
     	"./index.html",
     	"./src/**/*.{vue,js,jsx}"
 
-    5.npm run dev
-# vuejs-real-projects-course
+    5. create a file in src folder named index.css and
+        add tailwind directives -
+
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+    6. import './index.css' into main js file
+
+    7.npm run dev
+
+# Web devlopment with vue js 3 real projects
