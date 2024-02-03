@@ -1,40 +1,51 @@
-<script setup>
-import { ref } from 'vue'
+<script>
 
-defineProps({
-  msg: String,
-})
-
-const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <div class="header">
+    <h2
+      class="heading text-white bg-teal-500 text-2xl p-4 rounded-lg capitalize"
+    >
+      web dev with vue js real projects
+    </h2>
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="{1.5}"
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m8.25 4.5 7.5 7.5-7.5 7.5"
+      />
+    </svg>
+
+    <img src="/src/assets/logo-new.webp" alt="Logo" />
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
+<style>
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  align-content: flex-start;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid gray;
+}
+.header > svg {
+  width: 80px;
+}
+.header > img {
+  width: 300px;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 </style>
