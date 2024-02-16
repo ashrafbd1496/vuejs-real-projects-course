@@ -1,6 +1,6 @@
 <template>
   <div
-    class="heading container w-screen p-3 h-10 flex items-center justify-center text-black bg-gray-200 content-center border-solid border-2 border-b-gray-500"
+    class="heading p-3 flex items-center justify-center bg-gray-800 text-white content-center border-solid border-2 border-b-gray-500"
   >
     HEADER
   </div>
