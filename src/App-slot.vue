@@ -1,5 +1,5 @@
 <template>
-  <div class="xl:container flex flex-col h-screen">
+  <div class="flex flex-col h-screen mx-auto">
     <!-- Header -->
     <header class="bg-gray-800 text-white p-4 w-screen">Header Content</header>
 
@@ -13,17 +13,12 @@
       <!-- Main Content Area -->
       <main class="flex-grow p-4">
         <Hello>
-          <template #slotHeader>I am new Header using slot name</template>
-          <template #slotFooter>I am new footer using slot name</template>
-
-          <h2 class="text-4xl font-extrabold mb-4 text-teal-500">
-            What is slot ?
-          </h2>
+          <h2 class="text-4xl font-extrabold mb-4">What is slot ?</h2>
           <p class="p-2">
-            A slot is a placeholder in a component's template that allows the
-            parent component to inject content into it. Slots are useful when
-            you want to create reusable components that can have dynamic
-            content.
+            In Vue.js, a slot is a placeholder in a component's template that
+            allows the parent component to inject content into it. Slots are
+            useful when you want to create reusable components that can have
+            dynamic content.
           </p>
           <button
             type="button"
@@ -31,6 +26,8 @@
           >
             Click
           </button>
+
+          <Slottest />
         </Hello>
       </main>
     </div>
@@ -42,10 +39,12 @@
 
 <script>
 import Hello from "./components/Hello.vue";
+import Slottest from "./components/Slottest.vue";
 
 export default {
   components: {
     Hello,
+    Slottest,
   },
   data() {
     return {};
