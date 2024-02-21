@@ -22,10 +22,12 @@
 
   <div class="mt-4 inline-flex">
     <h2 class="text-xl flex justify-center">
-      Active Component content of {{ activeComponent }}  : 
-      <component :is="activeComponent" />
+      Active Component content of {{ activeComponent }} :
     </h2>
   </div>
+  <keep-alive>
+    <component :is="activeComponent" />
+  </keep-alive>
 </template>
 
 <script>
