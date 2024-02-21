@@ -1,58 +1,52 @@
 <template>
-  <div class="xl:container flex flex-col h-screen">
-    <!-- Header -->
-    <header class="bg-gray-800 text-white p-4 w-screen">Header Content</header>
+  <div class="flex justify-center">
+    <button
+      @click="activeComponent = 'DynamicA'"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+    >
+      Component A
+    </button>
+    <button
+      @click="activeComponent = 'DynamicB'"
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+    >
+      Component B
+    </button>
+    <button
+      @click="activeComponent = 'DynamicC'"
+      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Component C
+    </button>
+  </div>
 
-    <!-- Main Content -->
-    <div class="flex flex-grow">
-      <!-- Sidebar (hidden on smaller screens) -->
-      <aside class="hidden md:block bg-gray-200 w-1/4 p-4">
-        Sidebar Content
-      </aside>
-
-      <!-- Main Content Area -->
-      <main class="flex-grow p-4">
-        <Hello>
-          <template #slotHeader>I am new Header using slot name</template>
-          <template #slotFooter>I am new footer using slot name</template>
-
-          <h2 class="text-4xl font-extrabold mb-4 text-teal-500">
-            What is slot ?
-          </h2>
-          <p class="p-2">
-            A slot is a placeholder in a component's template that allows the
-            parent component to inject content into it. Slots are useful when
-            you want to create reusable components that can have dynamic
-            content.
-          </p>
-          <button
-            type="button"
-            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Click
-          </button>
-        </Hello>
-      </main>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-4 w-screen">Footer Content</footer>
+  <div class="mt-4 inline-flex">
+    <h2 class="text-xl flex justify-center">
+      Active Component content of {{ activeComponent }}  : 
+      <component :is="activeComponent" />
+    </h2>
   </div>
 </template>
 
 <script>
-import Hello from "./components/Hello.vue";
+import DynamicA from "./components/DynamicA.vue";
+import DynamicB from "./components/DynamicB.vue";
+import DynamicC from "./components/DynamicC.vue";
 
 export default {
+  name: "App",
   components: {
-    Hello,
+    DynamicA,
+    DynamicB,
+    DynamicC,
   },
   data() {
-    return {};
+    return {
+      activeComponent: "DynamicA",
+    };
   },
 };
 </script>
-
 <style>
 html,
 body {
