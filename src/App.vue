@@ -1,50 +1,49 @@
 <template>
-  <div class="flex justify-center">
+  <div class="wrapper">
     <button
-      @click="activeComponent = 'DynamicA'"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+      type="button"
+      class="bg-teal-500 text-white p-2"
+      @click="showModal = true"
     >
-      Component A
+      Open Modal
     </button>
-    <button
-      @click="activeComponent = 'DynamicB'"
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-    >
-      Component B
-    </button>
-    <button
-      @click="activeComponent = 'DynamicC'"
-      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-    >
-      Component C
-    </button>
+    <teleport to="body">
+      <div
+        v-if="showModal"
+        class="modal flex justify-center items-center fixed top-0 left-0 w-full h-full bg-teal-500 text-white"
+      >
+        <div
+          class="modalContent text-white p-4 border border-dashed border-blue-500"
+        >
+          <h2 class="text-2xl font-extrabold">Modal Header</h2>
+          <p>
+            Modal Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Nulla dolor quidem voluptas, inventore veritatis unde
+          </p>
+          <button
+            type="button"
+            class="bg-white text-black p-2 mt-9 m-2"
+            @click="showModal = false"
+          >
+            Modal Close
+          </button>
+        </div>
+      </div>
+    </teleport>
   </div>
-
-  <div class="mt-4 inline-flex">
-    <h2 class="text-xl flex justify-center">
-      Active Component content of {{ activeComponent }} :
-    </h2>
-  </div>
-  <keep-alive>
-    <component :is="activeComponent" />
-  </keep-alive>
 </template>
 
 <script>
-import DynamicA from "./components/DynamicA.vue";
-import DynamicB from "./components/DynamicB.vue";
-import DynamicC from "./components/DynamicC.vue";
+//import DynamicA from "./components/DynamicA.vue";
 
 export default {
   name: "App",
   components: {
-    DynamicA,
-    DynamicB,
-    DynamicC,
+    //DynamicA,
   },
   data() {
     return {
-      activeComponent: "DynamicA",
+      showModal: false,
     };
   },
 };
