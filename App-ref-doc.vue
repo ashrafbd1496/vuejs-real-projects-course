@@ -1,15 +1,18 @@
 <template>
   <div class="wrapper flex flex-col justify-center items-center">
-    <img ref="vueLogo"
+    <img
       id="lifecyclehook"
       class="lifecyclehook w-24 h-auto"
       src="./assets/vue.svg"
       alt=""
     />
-    <button @click="$refs.vueLogo.style.width='300px'" type="button" class="bg-teal-500 px-2 mt-1">Big</button>
-    <button @click="$refs.vueLogo.style.width='100px'" type="button" class="bg-teal-500 mt-1 px-2">Small</button>
   </div>
-
+  <ul>
+    <li v-for="item in list" ref="items">
+      {{ item }}
+    </li>
+  </ul>
+  <!-- <input ref="input" type="text" /> -->
 </template>
 
 <script>
@@ -22,14 +25,14 @@ export default {
   },
   data() {
     return {
-      
+      list: [1, 2, 3, 4],
     };
   },
 
   mounted() {
-    
+    // this.$refs.input.focus();
  
-  
+    console.log(this.$refs.items);
   },
 };
 </script>
