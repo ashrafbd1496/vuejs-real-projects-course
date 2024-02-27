@@ -6,45 +6,34 @@
       src="./assets/vue.svg"
       alt=""
     />
-    <Hooks v-if="show" />
-    <button
-      @click="show = !show"
-      type="button"
-      class="bg-teal-500 text-white px-2 mt-2"
-    >
-      Show/Hide
-    </button>
   </div>
+  <ul>
+    <li v-for="item in list" ref="items">
+      {{ item }}
+    </li>
+  </ul>
+  <!-- <input ref="input" type="text" /> -->
 </template>
 
 <script>
-import Hooks from "./components/Hooks.vue";
+//import Hooks from "./components/Hooks.vue";
 
 export default {
   name: "App",
   components: {
-    Hooks,
+    //Hooks,
   },
   data() {
     return {
-      show: true,
-      // createdHook: "Lifecycle created hook",
-      // mountedHook: "Lifecycle mounted hook",
+      list: [1, 2, 3, 4],
     };
   },
-  
-  // beforeCreate() {
-  //   console.log(this.createdHook);
-  // },
-  // created() {
-  //   console.log(this.createdHook);
-  // },
-  // beforeMount() {
-  //   console.log(this.mountedHook);
-  // },
-  // mounted() {
-  //   console.log(this.mountedHook);
-  // },
+
+  mounted() {
+    // this.$refs.input.focus();
+ 
+    console.log(this.$refs.items);
+  },
 };
 </script>
 <style>
