@@ -1,51 +1,50 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper flex flex-col justify-center items-center">
+    <img
+      id="lifecyclehook"
+      class="lifecyclehook w-24 h-auto"
+      src="./assets/vue.svg"
+      alt=""
+    />
+    <Hooks v-if="show" />
     <button
+      @click="show = !show"
       type="button"
-      class="bg-teal-500 text-white p-2"
-      @click="showModal = true"
+      class="bg-teal-500 text-white px-2 mt-2"
     >
-      Open Modal
+      Show/Hide
     </button>
-    <teleport to="body">
-      <div
-        v-if="showModal"
-        class="modal flex justify-center items-center fixed top-0 left-0 w-full h-full bg-teal-500 text-white"
-      >
-        <div
-          class="modalContent text-white p-4 border border-dashed border-blue-500"
-        >
-          <h2 class="text-2xl font-extrabold">Modal Header</h2>
-          <p>
-            Modal Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Nulla dolor quidem voluptas, inventore veritatis unde
-          </p>
-          <button
-            type="button"
-            class="bg-white text-black p-2 mt-9 m-2"
-            @click="showModal = false"
-          >
-            Modal Close
-          </button>
-        </div>
-      </div>
-    </teleport>
   </div>
 </template>
 
 <script>
-//import DynamicA from "./components/DynamicA.vue";
+import Hooks from "./components/Hooks.vue";
 
 export default {
   name: "App",
   components: {
-    //DynamicA,
+    Hooks,
   },
   data() {
     return {
-      showModal: false,
+      show: true,
+      // createdHook: "Lifecycle created hook",
+      // mountedHook: "Lifecycle mounted hook",
     };
   },
+  
+  // beforeCreate() {
+  //   console.log(this.createdHook);
+  // },
+  // created() {
+  //   console.log(this.createdHook);
+  // },
+  // beforeMount() {
+  //   console.log(this.mountedHook);
+  // },
+  // mounted() {
+  //   console.log(this.mountedHook);
+  // },
 };
 </script>
 <style>
