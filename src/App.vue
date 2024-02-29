@@ -1,15 +1,19 @@
 <template>
   <div class="wrapper flex flex-col justify-center items-center">
-    <img ref="vueLogo"
+    <img
+      ref="vueLogo"
       id="lifecyclehook"
       class="lifecyclehook w-24 h-auto"
       src="./assets/vue.svg"
       alt=""
     />
-    <button @click="$refs.vueLogo.style.width='300px'" type="button" class="bg-teal-500 px-2 mt-1">Big</button>
-    <button @click="$refs.vueLogo.style.width='100px'" type="button" class="bg-teal-500 mt-1 px-2">Small</button>
+    <h1>Ref Watch</h1>
+    <p class="text-xs">Open console to watch</p>
+    <h2 class="block w-full" ref="counterRef">{{ counter }}</h2>
+    <button @click="counter++" type="button" class="bg-teal-500 px-2 mt-1">
+      Click to watch
+    </button>
   </div>
-
 </template>
 
 <script>
@@ -22,14 +26,19 @@ export default {
   },
   data() {
     return {
-      
+      counter: 0,
     };
   },
 
-  mounted() {
-    
- 
-  
+  watch: {
+    counter(newValue, OldValue) {
+      if (newValue > 5) {
+        this.$refs.counterRef.style.background = "red";
+      }
+      if(OldValue > 7){
+        this.$refs.counterRef.style.background = "green"; 
+      }
+    },
   },
 };
 </script>
