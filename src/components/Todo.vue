@@ -1,6 +1,11 @@
 <template>
   <div class="container">
     <h1 class="header">Todo List</h1>
+    <div ref="completedRef" class="completedTask rounded p-2">
+      <p class="p-2">
+        Total Task -{{ data.length }} and Completed Task -{{ getCompleted }}
+      </p>
+    </div>
     <div id="newtask" class="inputDiv">
       <input
         ref="myInput"
@@ -16,10 +21,26 @@
     <ul class="buttonUl">
       <li class="" v-for="(item, index) in data" :key="index">
         <div class="items flex justify-between items-center">
-          <span :class="{strike:item.completed}" class="itemText flex-1 text-left">{{ item.text }}</span>
+          <span
+            :class="{ strike: item.completed }"
+            class="itemText flex-1 text-left"
+            >{{ item.text }}</span
+          >
           <div class="btngroup items-end">
-            <button @click="doneTask(item)" type="button" class="btn done bg-green-500">Done</button>
-            <button @click="deleteTask(index)" type="button" class="btn delete bg-red-500">Delete</button>
+            <button
+              @click="doneTask(item)"
+              type="button"
+              class="btn done bg-green-500"
+            >
+              Done
+            </button>
+            <button
+              @click="deleteTask(index)"
+              type="button"
+              class="btn delete bg-red-500"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </li>
@@ -36,6 +57,21 @@ export default {
       data: [],
     };
   },
+  watch:{
+    getCompleted(newVal){
+      if(newVal/this.data.length >= 0.5){
+        this.$refs.completedRef.style.background="green";
+      }else{
+        this.$refs.completedRef.style.background="yellow";
+
+      }
+    }
+  },
+  computed:{
+    getCompleted(){
+      return this.data.filter((item) => item.completed).length;
+    },
+  },
   methods: {
     addTask() {
       if (this.model !== "") {
@@ -46,17 +82,17 @@ export default {
         });
       }
       //To empty input field
-      this.model= '';
+      this.model = "";
       //for focus in input field
       this.$refs.myInput.focus();
     },
-    deleteTask(index){
-      this.data.splice(index,1);
+    deleteTask(index) {
+      this.data.splice(index, 1);
       this.$refs.myInput.focus();
     },
-    doneTask(item){
-      const idx = this.data.findIndex((x)=>x.id === item.id);
-      this.data[idx].completed =!item.completed;
+    doneTask(item) {
+      const idx = this.data.findIndex((x) => x.id === item.id);
+      this.data[idx].completed = !item.completed;
       this.$refs.myInput.focus();
     },
   },
@@ -75,8 +111,9 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-.strike{
+.strike {
   text-decoration: line-through;
+  color: green;
 }
 .btn {
   padding: 3px 5px;
@@ -128,7 +165,6 @@ body {
 /* Input and Button */
 #newtask {
   padding: 10px 20px;
-
 }
 
 #newtask input {
