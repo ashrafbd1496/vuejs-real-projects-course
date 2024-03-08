@@ -1,17 +1,18 @@
 <template>
   <div>
-    <Form />
+    <Todo />
   </div>
 </template>
 
 <script>
-import Form from "./components/Form.vue";
+import Todo from "./components/Todo.vue";
 
 export default {
   name: "App",
   components: {
-    Form,
+    Todo,
   },
+  
 };
 </script>
 <style>
@@ -20,5 +21,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
+
 </style>
