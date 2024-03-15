@@ -7,7 +7,7 @@
         <h1 class="text-xl font-bold text-white capitalize dark:text-white">
           Account settings
         </h1>
-        <form>
+        <form @submit.prevent="submitForm">
           <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
               <label class="text-white dark:text-gray-200" for="username"
@@ -224,12 +224,28 @@ export default {
         address: "",
         hobbies: [],
         gender: [],
+        file:"",
+       
       },
+      file: {},
     };
   },
   methods: {
     getCountryNameById(id) {
       return this.countries.find((item) => item.id === id).name;
+    },
+    submitForm(){
+      this.user={
+        name: "",
+        email: "",
+        country: 1,
+        address: "",
+        hobbies: [],
+        gender: [],
+        file:[],
+       
+      };
+      this.file=[]
     },
     onFileChange(e) {
       this.user.file={
