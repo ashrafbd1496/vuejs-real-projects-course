@@ -13,7 +13,7 @@
               <label class="text-white dark:text-gray-200" for="username"
                 >Username</label
               >
-              <input
+              <input :class="userValidations.name ? 'isError': '' "
                 v-model="user.name"
                 id="username"
                 type="text"
@@ -25,7 +25,7 @@
               <label class="text-white dark:text-gray-200" for="emailAddress"
                 >Email Address</label
               >
-              <input
+              <input :class="userValidations.email ? 'isError': '' "
                 v-model="user.email"
                 id="emailAddress"
                 type="email"
@@ -157,13 +157,10 @@
                       for="file-upload"
                       class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                     >
-                      <span class="block"
-                        @click="$refs.myFileInput.click()"
-                        
-                        >{{file?.name ? "Change File" : "Select File"}}</span
-                      >
+                      <span class="block" @click="$refs.myFileInput.click()">{{
+                        file?.name ? "Change File" : "Select File"
+                      }}</span>
                       <input
-                      
                         @change="onFileChange"
                         ref="myFileInput"
                         id="file-upload"
@@ -171,7 +168,7 @@
                         type="file"
                         class="sr-only"
                       />
-                      <span v-if="file?.name">{{file.name}}</span>
+                      <span v-if="file?.name">{{ file.name }}</span>
                     </label>
                     <p class="pl-1 text-white">or drag and drop</p>
                   </div>
@@ -202,6 +199,10 @@ export default {
   name: "Form",
   data() {
     return {
+      userValidations:{
+        name: false,
+        email: false,
+      },
       countries: [
         { id: 1, name: "Saudi Arabia" },
         { id: 2, name: "Filistin" },
@@ -224,37 +225,49 @@ export default {
         address: "",
         hobbies: [],
         gender: [],
-        file:"",
-       
+        file: "",
       },
       file: {},
     };
   },
   methods: {
+    validateData() {
+      const obj = {
+        name: this.user.name.trim() === "",
+        email: this.user.email.trim() === "",
+      };
+      console.log(obj);
+      return obj;
+    },
     getCountryNameById(id) {
       return this.countries.find((item) => item.id === id).name;
     },
-    submitForm(){
-      this.user={
-        name: "",
-        email: "",
-        country: 1,
-        address: "",
-        hobbies: [],
-        gender: [],
-        file:[],
-       
-      };
-      this.file=[]
+    submitForm() {
+      const validationResult = this.validateData();
+      this.userValidations = validationResult;
+      if (Object.values(validationResult).includes(true)) {
+        alert("Form is invalid");
+      } else {
+        this.user = {
+          name: "",
+          email: "",
+          country: 1,
+          address: "",
+          hobbies: [],
+          gender: [],
+          file: [],
+        };
+        this.file = [];
+      }
     },
     onFileChange(e) {
-      this.user.file={
-        name:e.target.files[0].name,
-        size:e.target.files[0].size,
-        type:e.target.files[0].type
-      },
-      console.log(e.target.files);
-      this.file={name:e.target.files[0].name}
+      (this.user.file = {
+        name: e.target.files[0].name,
+        size: e.target.files[0].size,
+        type: e.target.files[0].type,
+      }),
+        console.log(e.target.files);
+      this.file = { name: e.target.files[0].name };
     },
   },
   computed: {
@@ -264,4 +277,9 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.isError {
+  border-color: red;
+  border-width: 2px;
+}
+</style>
