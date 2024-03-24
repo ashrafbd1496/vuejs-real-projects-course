@@ -8,8 +8,8 @@
       <label :for="'exp-' + index">Experience</label>
       <input v-model="item.exp" :id="'exp-' + index" class="border-gray-500 shadow appearance-none border ml-2 pl-2" type="number" placeholder="Experience">
     </div>
-    <div class="ml-12">
-      <button @click.prevent="addNewExp" class="btn btn-sm border border-gray-500 p-1">Add Exp</button>
+    <div class="ml-12" v-if="index === userExp.length - 1">
+      <button @click.prevent="addNewExp" class="btn btn-sm border border-gray-500 p-0.5 rounded">Add Exp</button>
     </div>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
       ],
     };
   },
+  
   methods:{
     addNewExp(){
       this.userExp.push({
