@@ -1,19 +1,23 @@
 <template>
   <div>
-    <!-- <Form /> -->
-    <DynamicInput />
+    
   </div>
 </template>
 
 <script>
-//import Form from "./components/Form.vue";
-import DynamicInput from "./components/DynamicInput.vue";
+
+
 
 export default {
   name: "App",
+  data(){
+    return{
+      
+    };
+    
+  },
   components: {
-    // Form,
-    DynamicInput,
+   
   },
 };
 </script>
