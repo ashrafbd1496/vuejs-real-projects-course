@@ -1,20 +1,14 @@
 <template>
   <div class="wrapper flex flex-col justify-center items-center">
-    <img
-      id="lifecyclehook"
-      class="lifecyclehook w-24 h-auto"
-      src="./assets/vue.svg"
-      alt=""
-    />
+    
   </div>
 
   <script>
-    //import Hooks from "./components/Hooks.vue";
-
+   
     export default {
       name: "App",
       components: {
-        //Hooks,
+        
       },
       data() {
         return {};

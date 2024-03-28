@@ -10,7 +10,20 @@
 <script>
 
 import {defineAsyncComponent} from "vue";
+import loadingComponent from './components/Loading.vue';
+
 import ComponentA from "./components/ComponentA.vue";
+
+const ComponentB = defineAsyncComponent({
+  loader: () => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(import('./components/ComponentB.vue'));
+      }, 5000); // Delay for 5 second (5000 milliseconds)
+    });
+  },
+  loadingComponent: loadingComponent,
+});
 
 
 export default {
@@ -24,8 +37,7 @@ export default {
   components: {
     // Form,
     ComponentA,
-    ComponentB:defineAsyncComponent(()=>
-    import("./components/ComponentB.vue")),
+    ComponentB
   },
 };
 </script>
